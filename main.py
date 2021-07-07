@@ -38,7 +38,7 @@ def signin():
 
         user= User.query.filter((User.email==email) & (User.password == password))
         if user:
-            return render_template('home.html')
+            return render_template('home.html',message=user.firstname)
         else:
             return render_template('signin.html')
 
