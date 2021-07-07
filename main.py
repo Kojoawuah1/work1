@@ -60,7 +60,7 @@ def handleSignUp():
 def new():
     if request.method=='POST':
         data=request.get_json(force=True)
-        new_user=User(email=data['email'],password=data['password'],firstname=data['fname'],lastname=data['lname'])
+        new_user=User(email=data['email'],password=data['password'],firstname=data['firstname'],lastname=data['lastname'])
         db.session.add(new_user)
         db.session.commit()
         data={"registered":True,"email":data['email'],'password':data['password']}
