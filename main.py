@@ -36,7 +36,7 @@ def signin():
         email=request.form.get('email')
         password=request.form.get('password')
 
-        user= User.query.filter((User.email==email) & (User.password == password))
+        user= User.query.filter((User.email==email) & (User.password == password)).first()
         if user:
             return render_template('home.html',message=user.firstname)
         else:
