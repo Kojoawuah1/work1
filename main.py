@@ -78,7 +78,7 @@ def user():
         data=request.get_json(force=True)
         user=User.query.filter((User.email==data['email']) & (User.password==data['password'])).first()
         if user:
-            data={"user":True,"email":user.email,"password":user.password}
+            data={"user":True,"email":user.email,"password":user.password,"firstname":user.firstname}
             return jsonify(data),200
         else :
             data={"user":False}
