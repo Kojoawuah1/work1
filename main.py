@@ -1,4 +1,4 @@
-from flask import Flask,request,make_response,render_template
+from flask import Flask,request,make_response,render_template,jsonify
 import flask
 from flask_sqlalchemy import SQLAlchemy
 import os
@@ -69,7 +69,7 @@ def new():
         db.session.commit()
         data={"registered":True,"email":data['email'],'password':data['password']}
         response=flask.make_response(data,200)
-    return response
+    return jsonify(response)
 
 
 @app.route("/mobile/login",methods=['POST'])
@@ -81,10 +81,10 @@ def user():
         if user:
             data={"user":True,"email":user.email,"password":user.password}
             res=flask.make_response(data,200)
-            return res,200
+            return jsonify(res)
         else :
             data={"user":False}
             res=flask.make_response(data,201)
-            return res,201
+            return jsonify(res)
 
 
