@@ -83,7 +83,7 @@ def user():
             res=flask.make_response(data,200)
             return res,200
         else :
-            data={"user":False,"email":user.email,"password":user.password}
+            data={"user":False}
             res=flask.make_response(data,201)
             return res,201
 
