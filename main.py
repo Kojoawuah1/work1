@@ -50,7 +50,7 @@ def handleSignUp():
         password=request.form.get('password')
         email=request.form.get('email')
 
-        new_user=User(email=email,password=password,firtname=fname,lastname=lname)
+        new_user=User(email=email,password=password,firstname=fname,lastname=lname)
         db.session.add(new_user)
         db.session.commit()
         return render_template('/signin.html')
