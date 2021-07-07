@@ -2,8 +2,11 @@ from flask import Flask,request,make_response,render_template
 import flask
 from flask_sqlalchemy import SQLAlchemy
 import os
+from flask_cors import CORS , cross_origin
 
 app=Flask(__name__)
+CORS(app,resources={r"/mobile/*":{"origins":"*"}})
+app.config['CORS HEADERS']='Content-Type'
 app.config['SECRET_KEY']="secret"
 app.config['SQLALCHEMY_DATABASE_URI']=os.environ.get("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']= True
@@ -56,7 +59,8 @@ def handleSignUp():
         return render_template('/signin.html')
 
 
-@app.route("/sign-up",methods=['GET','POST'])
+@app.route("/mobile/sign-up",methods=['GET','POST'])
+@cross_origin()
 def new():
     if request.method=='POST':
         data=request.get_json(force=True)
@@ -69,7 +73,8 @@ def new():
     return response
 
 
-@app.route("/login",methods=['POST'])
+@app.route("/mobile/login",methods=['POST'])
+@cross_origin()
 def user():
     if request.method == 'POST':
         data=request.get_json(force=True)
