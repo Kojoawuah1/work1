@@ -68,8 +68,7 @@ def new():
         db.session.add(new_user)
         db.session.commit()
         data={"registered":True,"email":data['email'],'password':data['password']}
-        response=flask.make_response(data,200)
-    return jsonify(response)
+    return jsonify(data),200
 
 
 @app.route("/mobile/login",methods=['POST'])
@@ -80,11 +79,9 @@ def user():
         user=User.query.filter((User.email==data['email']) & (User.password==data['password'])).first()
         if user:
             data={"user":True,"email":user.email,"password":user.password}
-            res=flask.make_response(data,200)
-            return jsonify(res)
+            return jsonify(data),200
         else :
             data={"user":False}
-            res=flask.make_response(data,201)
-            return jsonify(res)
+            return jsonify(data),201
 
 
