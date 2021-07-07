@@ -69,7 +69,6 @@ def new():
         db.session.commit()
         data={"registered":True,"email":data['email'],'password':data['password']}
         response=flask.make_response(data,200)
-        response.headers["Access-Control-Allow-Origin"] = "*"
     return response
 
 
@@ -82,12 +81,10 @@ def user():
         if user:
             data={"user":True,"email":user.email,"password":user.password}
             res=flask.make_response(data,200)
-            res.headers["Access-Control-Allow-Origin"] = "*"
             return res,200
         else :
             data={"user":False,"email":user.email,"password":user.password}
             res=flask.make_response(data,201)
-            res.headers["Access-Control-Allow-Origin"] = "*"
             return res,201
 
 
